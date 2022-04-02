@@ -18,8 +18,8 @@ bool H[X][Y]{{1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0},
              {0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1}};
 
 
-vector<bool> stringToBoolean(string text) {
-    vector<bool> booleanText;
+vector<bool> stringToBoolean(string text) {     //funkcja konwertuje string postaci binarnej do vectora wartosci logicznych
+    vector<bool> booleanText;                   //unikamy zwielokrotlenia wagi pliku przez przechodznie przez stringa
     for(int i = 0; i < text.size(); i++) {
         if(text[i] == '1') booleanText.push_back( 1 );
         else booleanText.push_back( 0 );
@@ -27,7 +27,7 @@ vector<bool> stringToBoolean(string text) {
     return booleanText;
 }
 
-vector<bool> asciiToBinary(string text) {
+vector<bool> asciiToBinary(string text) {       //funkcja zamienia znaki ascii na ciąg binarny działajac na poszczegolnych znakach
     vector<bool> binary;
     int sign;
     for(int i = 0; i < text.size(); i++) {
@@ -40,15 +40,15 @@ vector<bool> asciiToBinary(string text) {
     return binary;
 }
 
-char binaryToAscii(vector<bool> binary) {
-    char character = 0;
+char binaryToAscii(vector<bool> binary) {       //funkcja zamienia ciąg binarny na jeden znak ascii
+    char character = 0;                         // 1 znak ascii = 8 bitów
     for(int i = 0; i < 8; i++) {
         character += binary[i]*pow(2, i);
     }
     return character;
 }
 
-int calculateParityBit(vector<bool> message, int rowNumber) {
+int calculateParityBit(vector<bool> message, int rowNumber) { //funkcja oblicza bit parzystości na postawie macierzy h
     int parityBit = 0;
     for(int i = 0; i < message.size(); i++) {
         parityBit += H[rowNumber][i] * message[i];
